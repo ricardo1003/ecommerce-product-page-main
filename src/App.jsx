@@ -6,7 +6,7 @@ import "./App.css";
 function App() {
   const [navState, setNavState] = useState(false);
   const [cartState, setCartState] = useState(false);
-  const [cartHidden, setCartHidden] = useState(true)
+  const [cartHidden, setCartHidden] = useState(true);
 
   const [imgNumber, setImgNumber] = useState(0);
 
@@ -65,15 +65,26 @@ function App() {
         ></div>
         <img src="./assets/logo.svg" alt="logo" className="mr-auto" />
         <button
+          className="relative"
           type="button"
           onClick={() => {
             cartState ? setCartState(false) : setCartState(true);
-            cartHidden ? setCartHidden(false) :
-            setTimeout(() => {
-              setCartHidden(true);
-            }, 500);
+            cartHidden
+              ? setCartHidden(false)
+              : setTimeout(() => {
+                  setCartHidden(true);
+                }, 500);
           }}
         >
+          <p
+            className={
+              !counter
+                ? "hidden"
+                : `flex bg-Orange absolute text-white rounded-full font-bold -top-3 -right-3 px-2 text-sm`
+            }
+          >
+            {counter}
+          </p>
           <img src="./assets/icon-cart.svg" alt="cart" />
         </button>
         <a href="" className="max-w-8">
@@ -82,16 +93,60 @@ function App() {
       </header>
       <main className="max-w-[100vw] relative">
         <section
-          className={`bg-white absolute z-10 left-4 right-4 top-4 rounded-xl flex-col  gap-2 shadow-2xl shadow-black/60 ${cartHidden ? "hidden" : "flex"} ${
+          className={`bg-white absolute z-10 left-4 right-4 top-4 rounded-xl flex-col  gap-2 shadow-2xl shadow-black/60 ${
+            cartHidden ? "hidden" : "flex"
+          } ${
             cartState ? "opacity-100 cartAnimation" : "opacity-0 cartAnimationR"
           } transition-all duration-500`}
-        > 
+        >
           <h3 className="font-bold p-6 pb-2">Cart</h3>
           <div className="w-full h-[1px] bg-black/50" />
-          <div className="p-8 h-[200px] flex items-center justify-center">
-            <p className="font-bold text-Dark-grayish-blue">
+          <div
+            className={`p-8 h-[200px] flex items-center justify-center ${
+              counter ? "flex-col justify-between gap-4" : ""
+            }`}
+          >
+            <p
+              className={`font-bold text-Dark-grayish-blue ${
+                counter ? "hidden" : ""
+              }`}
+            >
               Your cart is empty.
             </p>
+            <ol className={!counter ? "hidden" : ""}>
+              <li className="flex w-full justify-between gap-2">
+                <img
+                  src="./assets/image-product-1-thumbnail.jpg"
+                  alt="thumbnail"
+                  className="max-h-full max-w-full h-[60px] rounded-md"
+                />
+                <div className="flex flex-col text-Dark-grayish-blue">
+                  <p className="capitalize">
+                    fall limited edition sneakers
+                  </p>
+                  <p >
+                    $125.00 x {counter} 
+                    <b className="text-black"> ${125 * counter}.00</b>
+                  </p>
+                </div>
+                <button className="w-[10%]">
+                  <img
+                    src="./assets/icon-delete.svg"
+                    alt="delete"
+                    className="w-full"
+                  />
+                </button>
+              </li>
+            </ol>
+            <button
+              className={
+                !counter
+                  ? "hidden"
+                  : "bg-Orange w-full h-10 rounded-md font-bold "
+              }
+            >
+              Checkout
+            </button>
           </div>
         </section>
         <div className="flex justify-between items-center w-full min-h-[375.2px] relative overflow-hidden">
@@ -180,7 +235,13 @@ function App() {
                 <img src="./assets/icon-plus.svg" alt="plus" />
               </button>
             </div>
-            <button className="bg-Orange h-12 rounded-lg flex items-center justify-center gap-4 font-bold">
+            <button
+              type="button"
+              className="bg-Orange h-12 rounded-lg flex items-center justify-center gap-4 font-bold"
+              onClick={(e) => {
+                e.preventDefault, setCounter(counter + 1);
+              }}
+            >
               <img
                 src="./assets/icon-cart.svg"
                 alt="cart"
