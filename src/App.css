@@ -1,0 +1,28 @@
+.cartAnimation {
+  animation: cartAnimation 500ms forwards;
+
+}
+.cartAnimationR{
+    animation: cartAnimationR 500ms forwards;
+}
+
+@keyframes cartAnimation {
+  from {
+    filter: opacity(0);
+    transform: translateY(-80px);
+  }
+  to {
+    filter: opacity(100);
+    transform: translateY(0px);
+  }
+}
+@keyframes cartAnimationR {
+    from {
+      filter: opacity(100);
+      transform: translateY(0);
+    }
+    to {
+      filter: opacity(0);
+      transform: translateY(-80px);
+    }
+  }

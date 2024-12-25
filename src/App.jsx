@@ -5,6 +5,8 @@ import "./App.css";
 
 function App() {
   const [navState, setNavState] = useState(false);
+  const [cartState, setCartState] = useState(false);
+  const [cartHidden, setCartHidden] = useState(true)
 
   const [imgNumber, setImgNumber] = useState(0);
 
@@ -38,7 +40,7 @@ function App() {
             navState ? "translate-x-[0]" : "-translate-x-[225px]"
           } transition-transform duration-500`}
         >
-          <ul className="flex flex-col gap-3">
+          <ul className={`flex-col gap-3 ${navState ? "flex" : "hidden"}`}>
             <li>
               <a href="">Collections</a>
             </li>
@@ -62,14 +64,36 @@ function App() {
           } transition-all duration-500`}
         ></div>
         <img src="./assets/logo.svg" alt="logo" className="mr-auto" />
-        <a href="">
+        <button
+          type="button"
+          onClick={() => {
+            cartState ? setCartState(false) : setCartState(true);
+            cartHidden ? setCartHidden(false) :
+            setTimeout(() => {
+              setCartHidden(true);
+            }, 500);
+          }}
+        >
           <img src="./assets/icon-cart.svg" alt="cart" />
-        </a>
+        </button>
         <a href="" className="max-w-8">
           <img src="./assets/image-avatar.png" alt="user" />
         </a>
       </header>
-      <main className="max-w-[100vw]">
+      <main className="max-w-[100vw] relative">
+        <section
+          className={`bg-white absolute z-10 left-4 right-4 top-4 rounded-xl flex-col  gap-2 shadow-2xl shadow-black/60 ${cartHidden ? "hidden" : "flex"} ${
+            cartState ? "opacity-100 cartAnimation" : "opacity-0 cartAnimationR"
+          } transition-all duration-500`}
+        > 
+          <h3 className="font-bold p-6 pb-2">Cart</h3>
+          <div className="w-full h-[1px] bg-black/50" />
+          <div className="p-8 h-[200px] flex items-center justify-center">
+            <p className="font-bold text-Dark-grayish-blue">
+              Your cart is empty.
+            </p>
+          </div>
+        </section>
         <div className="flex justify-between items-center w-full min-h-[375.2px] relative overflow-hidden">
           <button
             type="button"
