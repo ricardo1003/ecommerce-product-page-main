@@ -7,6 +7,7 @@ function App() {
   const [navState, setNavState] = useState(false);
   const [cartState, setCartState] = useState(false);
   const [cartHidden, setCartHidden] = useState(true);
+  const [divHidden, setDivHidden] = useState(true)
 
   const [imgNumber, setImgNumber] = useState(0);
 
@@ -20,6 +21,7 @@ function App() {
           className="flex items-center absolute left-6 z-[13]"
           onClick={() => {
             navState ? setNavState(false) : setNavState(true);
+            divHidden ? setDivHidden(false) : "";
           }}
         >
           <picture>
@@ -59,8 +61,10 @@ function App() {
           </ul>
         </nav>
         <div
-          className={`fixed block w-full h-full bg-black/50 top-0 left-0 z-[11] opacity-0 ${
-            navState ? "block opacity-100" : "opacity-0 hidden"
+          className={`fixed block w-full h-full bg-black/50 top-0 left-0 z-[11]  ${
+            navState ? "fadingDivIn" : "fadingDivOut"} ${navState ? "" : setTimeout(() => {
+              "hidden"
+            }, 500)
           } transition-all duration-500`}
         ></div>
         <img src="./assets/logo.svg" alt="logo" className="mr-auto" />
@@ -129,7 +133,7 @@ function App() {
                     <b className="text-black"> ${125 * counter}.00</b>
                   </p>
                 </div>
-                <button className="w-[10%]">
+                <button className="w-[10%]" onClick={(e)=>{e.preventDefault, setCounter(0)}}>
                   <img
                     src="./assets/icon-delete.svg"
                     alt="delete"

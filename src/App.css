@@ -6,6 +6,13 @@
     animation: cartAnimationR 500ms forwards;
 }
 
+.fadingDivIn{
+  animation: fadingDivIn 500ms forwards
+}
+.fadingDivOut{
+  animation: fadingDivOut 500ms forwards
+}
+
 @keyframes cartAnimation {
   from {
     filter: opacity(0);
@@ -26,3 +33,24 @@
       transform: translateY(-80px);
     }
   }
+
+@keyframes fadingDivIn{
+  from{
+    filter: opacity(0);
+    display: none;
+  }
+  to{
+    filter: opacity(100);
+    display: block;
+  }
+}
+@keyframes fadingDivOut{
+  from{
+    filter: opacity(100);
+    display: block;
+  }
+  to{
+    filter: opacity(0);
+    display: none;
+  }
+}
