@@ -15,10 +15,10 @@ function App() {
 
   return (
     <>
-      <header className="relative flex gap-4 w-full p-6 pl-[56px] items-center justify-between">
+      <header className="relative flex gap-4 w-full p-6 pl-[56px] sm:pl-6 items-center justify-between">
         <button
           type="button"
-          className="flex items-center absolute left-6 z-[13]"
+          className="flex items-center absolute left-6 z-[13] sm:hidden"
           onClick={() => {
             navState ? setNavState(false) : setNavState(true);
             divHidden ? setDivHidden(false) : "";
@@ -37,12 +37,13 @@ function App() {
             />
           </picture>
         </button>
+        <img src="./assets/logo.svg" alt="logo" className="mr-auto sm:mr-0" />
         <nav
           className={`fixed left-0 font-bold bg-white top-0 p-6 pt-24 w-[225px] z-[12] h-[100vh] ${
             navState ? "translate-x-[0]" : "-translate-x-[225px]"
-          } transition-transform duration-500`}
+          } transition-transform duration-500 sm:relative sm:size-auto sm:p-0 sm:left-auto sm:translate-x-[0] sm:text-Dark-grayish-blue sm:font-normal sm:mr-auto`}
         >
-          <ul className={`flex-col gap-3 ${navState ? "flex" : "hidden"}`}>
+          <ul className={`flex-col gap-3 ${navState ? "flex" : "hidden"} sm:flex sm:flex-row`}>
             <li>
               <a href="">Collections</a>
             </li>
@@ -67,7 +68,6 @@ function App() {
             }, 500)
           } transition-all duration-500`}
         ></div>
-        <img src="./assets/logo.svg" alt="logo" className="mr-auto" />
         <button
           className="relative"
           type="button"
