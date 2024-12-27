@@ -7,7 +7,7 @@ function App() {
   const [navState, setNavState] = useState(false);
   const [cartState, setCartState] = useState(false);
   const [cartHidden, setCartHidden] = useState(true);
-  const [divHidden, setDivHidden] = useState(true)
+  const [divHidden, setDivHidden] = useState(true);
 
   const [imgNumber, setImgNumber] = useState(0);
 
@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <header className="relative flex gap-4 w-full p-6 pl-[56px] sm:pl-6 items-center justify-between">
+      <header className="relative flex gap-4 w-full p-6 pl-[56px] sm:px-20 items-center justify-between">
         <button
           type="button"
           className="flex items-center absolute left-6 z-[13] sm:hidden"
@@ -43,7 +43,11 @@ function App() {
             navState ? "translate-x-[0]" : "-translate-x-[225px]"
           } transition-transform duration-500 sm:relative sm:size-auto sm:p-0 sm:left-auto sm:translate-x-[0] sm:text-Dark-grayish-blue sm:font-normal sm:mr-auto`}
         >
-          <ul className={`flex-col gap-3 ${navState ? "flex" : "hidden"} sm:flex sm:flex-row`}>
+          <ul
+            className={`flex-col gap-3 ${
+              navState ? "flex" : "hidden"
+            } sm:flex sm:flex-row`}
+          >
             <li>
               <a href="">Collections</a>
             </li>
@@ -63,9 +67,13 @@ function App() {
         </nav>
         <div
           className={`fixed block w-full h-full bg-black/50 top-0 left-0 z-[11]  ${
-            navState ? "fadingDivIn" : "fadingDivOut"} ${navState ? "" : setTimeout(() => {
-              "hidden"
-            }, 500)
+            navState ? "fadingDivIn" : "fadingDivOut"
+          } ${
+            navState
+              ? ""
+              : setTimeout(() => {
+                  "hidden";
+                }, 500)
           } transition-all duration-500`}
         ></div>
         <button
@@ -95,7 +103,7 @@ function App() {
           <img src="./assets/image-avatar.png" alt="user" />
         </a>
       </header>
-      <main className="max-w-[100vw] relative">
+      <main className="max-w-[100vw] relative block sm:flex sm:px-[120px] sm:items-center sm:my-auto sm:py-32 sm:gap-[5vw]">
         <section
           className={`bg-white absolute z-10 left-4 right-4 top-4 rounded-xl flex-col  gap-2 shadow-2xl shadow-black/60 ${
             cartHidden ? "hidden" : "flex"
@@ -125,15 +133,18 @@ function App() {
                   className="max-h-full max-w-full h-[60px] rounded-md"
                 />
                 <div className="flex flex-col text-Dark-grayish-blue">
-                  <p className="capitalize">
-                    fall limited edition sneakers
-                  </p>
-                  <p >
-                    $125.00 x {counter} 
+                  <p className="capitalize">fall limited edition sneakers</p>
+                  <p>
+                    $125.00 x {counter}
                     <b className="text-black"> ${125 * counter}.00</b>
                   </p>
                 </div>
-                <button className="w-[10%]" onClick={(e)=>{e.preventDefault, setCounter(0)}}>
+                <button
+                  className="w-[10%]"
+                  onClick={(e) => {
+                    e.preventDefault, setCounter(0);
+                  }}
+                >
                   <img
                     src="./assets/icon-delete.svg"
                     alt="delete"
@@ -153,10 +164,10 @@ function App() {
             </button>
           </div>
         </section>
-        <div className="flex justify-between items-center w-full min-h-[375.2px] relative overflow-hidden">
+        <div className="flex justify-between overflow-hidden items-center w-full min-h-[375.2px] relative  sm:flex-col sm:max-w-[450px]">
           <button
             type="button"
-            className={`block bg-white size-10 z-[5] mx-4 rounded-full ${
+            className={`sm:hidden block bg-white size-10 z-[5] mx-4 rounded-full ${
               imgNumber <= 0 ? "bg-white/25" : ""
             }`}
             onClick={() => {
@@ -171,20 +182,36 @@ function App() {
             />
           </button>
           <picture
-            className={`absolute flex z-[1]  `}
+            className={`absolute flex z-[1] sm:rounded-xl sm:relative sm:overflow-clip sm:aspect-square sm:max-h-[450px] `}
             style={{
               translate: `${-100 * imgNumber}vw`,
               transitionDuration: "250ms",
             }}
           >
-            <img src="./assets/image-product-1.jpg" alt="image-1" />
-            <img src="./assets/image-product-2.jpg" alt="image-2" />
-            <img src="./assets/image-product-3.jpg" alt="image-3" />
-            <img src="./assets/image-product-4.jpg" alt="image-4" />
+            <img
+              src="./assets/image-product-1.jpg"
+              alt="image-1"
+              className="sm:max-h-full"
+            />
+            <img
+              src="./assets/image-product-2.jpg"
+              alt="image-2"
+              className="sm:max-h-full"
+            />
+            <img
+              src="./assets/image-product-3.jpg"
+              alt="image-3"
+              className="sm:max-h-full"
+            />
+            <img
+              src="./assets/image-product-4.jpg"
+              alt="image-4"
+              className="sm:max-h-full"
+            />
           </picture>
           <button
             type="button"
-            className={`block bg-white size-10 z-[5] mx-4 rounded-full ${
+            className={`sm:hidden block bg-white size-10 z-[5] mx-4 rounded-full ${
               imgNumber >= 3 ? "bg-white/25" : ""
             }`}
             onClick={() => {
@@ -194,6 +221,42 @@ function App() {
           >
             <img src="./assets/icon-next.svg" alt="next" className="mx-4" />
           </button>
+          <nav className="hidden sm:block">
+            <ol className="flex">
+              <li className="p-3 rounded-md pt-6 pl-0">
+                <button className="rounded-xl overflow-hidden">
+                  <img
+                    src="./assets/image-product-1-thumbnail.jpg"
+                    alt="thumbnail"
+                  />
+                </button>
+              </li>
+              <li className="p-3 rounded-md pt-6">
+                <button className="rounded-xl overflow-hidden">
+                  <img
+                    src="./assets/image-product-2-thumbnail.jpg"
+                    alt="thumbnail"
+                  />
+                </button>
+              </li>
+              <li className="p-3 rounded-md pt-6">
+                <button className="rounded-xl overflow-hidden">
+                  <img
+                    src="./assets/image-product-3-thumbnail.jpg"
+                    alt="thumbnail"
+                  />
+                </button>
+              </li>
+              <li className="p-3 rounded-md pt-6 pr-0">
+                <button className="rounded-xl overflow-hidden">
+                  <img
+                    src="./assets/image-product-4-thumbnail.jpg"
+                    alt="thumbnail"
+                  />
+                </button>
+              </li>
+            </ol>
+          </nav>
         </div>
         <section className="p-4">
           <h3 className="uppercase font-bold text-Dark-grayish-blue">
@@ -207,41 +270,54 @@ function App() {
             Featuring a durable rubber outer sole, they’ll withstand everything
             the weather can offer.
           </p>
-          <h4 className="text-3xl font-bold w-full flex gap-2">
-            $125.00{" "}
-            <span className="text-white bg-black rounded-lg text-xl px-2 py-1 mr-auto">
-              50%
-            </span>{" "}
-            <span className="text-xl text-Dark-grayish-blue line-through">
+          <div className="flex sm:flex-col sm:gap-4">
+            <h4 className="text-3xl font-bold w-full flex gap-2">
+              $125.00{" "}
+              <span className="text-white bg-black rounded-lg text-xl px-2 py-1 mr-auto">
+                50%
+              </span>{" "}
+            </h4>
+            <p className="text-xl text-Dark-grayish-blue line-through">
               $250.00
-            </span>
-          </h4>
-          <form action="" className="w-full flex flex-col gap-2 my-8">
-            <div className="flex justify-between items-center font-bold bg-Light-grayish-blue h-12 rounded-lg">
+            </p>
+          </div>
+          <form
+            action=""
+            className="w-full flex flex-col gap-2 my-8 sm:flex-row sm:justify-between"
+          >
+            <div className="flex justify-between items-center font-bold bg-Light-grayish-blue h-12 rounded-lg relative">
               <button
                 type="button"
-                className="px-8 h-full"
+                className="w-full h-full flex justify-center items-center"
                 onClick={(e) => {
                   e.preventDefault, setCounter(counter - 1);
                 }}
                 disabled={counter ? false : true}
               >
-                <img src="./assets/icon-minus.svg" alt="minus" />
+                <img
+                  src="./assets/icon-minus.svg"
+                  alt="minus"
+                  className="w-4 ml-8 mr-10"
+                />
               </button>
               {counter}
               <button
                 type="button"
-                className="px-8 h-full"
+                className="w-full h-full flex justify-center items-center"
                 onClick={(e) => {
                   e.preventDefault, setCounter(counter + 1);
                 }}
               >
-                <img src="./assets/icon-plus.svg" alt="plus" />
+                <img
+                  src="./assets/icon-plus.svg"
+                  alt="plus"
+                  className="w-4 mr-8 ml-10"
+                />
               </button>
             </div>
             <button
               type="button"
-              className="bg-Orange h-12 rounded-lg flex items-center justify-center gap-4 font-bold"
+              className="bg-Orange h-12 rounded-lg flex items-center justify-center gap-4 font-bold sm:w-full"
               onClick={(e) => {
                 e.preventDefault, setCounter(counter + 1);
               }}
