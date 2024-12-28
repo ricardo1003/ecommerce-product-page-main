@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "/assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -12,6 +12,15 @@ function App() {
   const [imgNumber, setImgNumber] = useState(0);
 
   const [counter, setCounter] = useState(0);
+
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
+
+  useEffect(()=>{
+    const handleResize = () => setViewportWidth(window.innerWidth)
+    window.addEventListener("resize", handleResize)
+
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   return (
     <>
@@ -103,7 +112,7 @@ function App() {
           <img src="./assets/image-avatar.png" alt="user" />
         </a>
       </header>
-      <main className="max-w-[100vw] relative block sm:flex sm:px-[120px] sm:items-center sm:my-auto sm:py-32 sm:gap-[5vw]">
+      <main className="max-w-[100vw] relative block sm:flex sm:flex-col sm:px-[120px] sm:items-center sm:my-auto sm:py-32 sm:gap-[5vw] lg:flex-row">
         <section
           className={`bg-white absolute z-10 left-4 right-4 top-4 rounded-xl flex-col  gap-2 shadow-2xl shadow-black/60 ${
             cartHidden ? "hidden" : "flex"
@@ -164,7 +173,7 @@ function App() {
             </button>
           </div>
         </section>
-        <div className="flex justify-between overflow-hidden items-center w-full min-h-[375.2px] relative  sm:flex-col sm:max-w-[450px]">
+        <div className="flex justify-between overflow-hidden items-center w-full min-h-[375.2px] relative  sm:flex-col sm:max-w-[350px] lg:max-w-[31vw]">
           <button
             type="button"
             className={`sm:hidden block bg-white size-10 z-[5] mx-4 rounded-full ${
@@ -182,9 +191,9 @@ function App() {
             />
           </button>
           <picture
-            className={`absolute flex z-[1] sm:rounded-xl sm:relative sm:overflow-clip sm:aspect-square sm:max-h-[450px] `}
+            className={`absolute flex z-[1] sm:rounded-xl sm:relative sm:aspect-square sm:max-h-[350px] lg:h-[31vw] lg:max-h-[31vw] `}
             style={{
-              translate: `${-100 * imgNumber}vw`,
+              translate: `${(viewportWidth < 640) ? -100 * imgNumber + "vw" : (viewportWidth >= 1024) ? -31 * imgNumber + "vw" : -350 * imgNumber + "px"}`,
               transitionDuration: "250ms",
             }}
           >
@@ -224,7 +233,7 @@ function App() {
           <nav className="hidden sm:block">
             <ol className="flex">
               <li className="p-3 rounded-md pt-6 pl-0">
-                <button className="rounded-xl overflow-hidden">
+                <button className="rounded-xl overflow-hidden" onClick={(e)=>{e.preventDefault, setImgNumber(0)}}>
                   <img
                     src="./assets/image-product-1-thumbnail.jpg"
                     alt="thumbnail"
@@ -232,7 +241,7 @@ function App() {
                 </button>
               </li>
               <li className="p-3 rounded-md pt-6">
-                <button className="rounded-xl overflow-hidden">
+                <button className="rounded-xl overflow-hidden" onClick={(e)=>{e.preventDefault, setImgNumber(1)}}>
                   <img
                     src="./assets/image-product-2-thumbnail.jpg"
                     alt="thumbnail"
@@ -240,7 +249,7 @@ function App() {
                 </button>
               </li>
               <li className="p-3 rounded-md pt-6">
-                <button className="rounded-xl overflow-hidden">
+                <button className="rounded-xl overflow-hidden" onClick={(e)=>{e.preventDefault, setImgNumber(2)}}>
                   <img
                     src="./assets/image-product-3-thumbnail.jpg"
                     alt="thumbnail"
@@ -248,7 +257,7 @@ function App() {
                 </button>
               </li>
               <li className="p-3 rounded-md pt-6 pr-0">
-                <button className="rounded-xl overflow-hidden">
+                <button className="rounded-xl overflow-hidden" onClick={(e)=>{e.preventDefault, setImgNumber(3)}}>
                   <img
                     src="./assets/image-product-4-thumbnail.jpg"
                     alt="thumbnail"
