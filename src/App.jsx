@@ -13,14 +13,14 @@ function App() {
 
   const [counter, setCounter] = useState(0);
 
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
-  useEffect(()=>{
-    const handleResize = () => setViewportWidth(window.innerWidth)
-    window.addEventListener("resize", handleResize)
+  useEffect(() => {
+    const handleResize = () => setViewportWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
@@ -118,7 +118,7 @@ function App() {
             cartHidden ? "hidden" : "flex"
           } ${
             cartState ? "opacity-100 cartAnimation" : "opacity-0 cartAnimationR"
-          } transition-all duration-500`}
+          } transition-all duration-500 sm:max-w-[400px] sm:left-auto sm:right-16`}
         >
           <h3 className="font-bold p-6 pb-2">Cart</h3>
           <div className="w-full h-[1px] bg-black/50" />
@@ -190,34 +190,42 @@ function App() {
               className="mx-3"
             />
           </button>
-          <picture
-            className={`absolute flex z-[1] sm:rounded-xl sm:relative sm:aspect-square sm:max-h-[350px] lg:h-[31vw] lg:max-h-[31vw] `}
-            style={{
-              translate: `${(viewportWidth < 640) ? -100 * imgNumber + "vw" : (viewportWidth >= 1024) ? -31 * imgNumber + "vw" : -350 * imgNumber + "px"}`,
-              transitionDuration: "250ms",
-            }}
-          >
-            <img
-              src="./assets/image-product-1.jpg"
-              alt="image-1"
-              className="sm:max-h-full"
-            />
-            <img
-              src="./assets/image-product-2.jpg"
-              alt="image-2"
-              className="sm:max-h-full"
-            />
-            <img
-              src="./assets/image-product-3.jpg"
-              alt="image-3"
-              className="sm:max-h-full"
-            />
-            <img
-              src="./assets/image-product-4.jpg"
-              alt="image-4"
-              className="sm:max-h-full"
-            />
-          </picture>
+          <div className="rounded-xl relative overflow-hidden">
+            <picture
+              className={`absolute flex z-[1] sm:rounded-xl sm:relative sm:aspect-square sm:max-h-[350px] lg:h-[31vw] lg:max-h-[31vw] `}
+              style={{
+                translate: `${
+                  viewportWidth < 640
+                    ? -100 * imgNumber + "vw"
+                    : viewportWidth >= 1024
+                    ? -31 * imgNumber + "vw"
+                    : -350 * imgNumber + "px"
+                }`,
+                transitionDuration: "250ms",
+              }}
+            >
+              <img
+                src="./assets/image-product-1.jpg"
+                alt="image-1"
+                className="sm:max-h-full"
+              />
+              <img
+                src="./assets/image-product-2.jpg"
+                alt="image-2"
+                className="sm:max-h-full"
+              />
+              <img
+                src="./assets/image-product-3.jpg"
+                alt="image-3"
+                className="sm:max-h-full"
+              />
+              <img
+                src="./assets/image-product-4.jpg"
+                alt="image-4"
+                className="sm:max-h-full"
+              />
+            </picture>
+          </div>
           <button
             type="button"
             className={`sm:hidden block bg-white size-10 z-[5] mx-4 rounded-full ${
@@ -233,7 +241,12 @@ function App() {
           <nav className="hidden sm:block">
             <ol className="flex">
               <li className="p-3 rounded-md pt-6 pl-0">
-                <button className="rounded-xl overflow-hidden" onClick={(e)=>{e.preventDefault, setImgNumber(0)}}>
+                <button
+                  className="rounded-xl overflow-hidden"
+                  onClick={(e) => {
+                    e.preventDefault, setImgNumber(0);
+                  }}
+                >
                   <img
                     src="./assets/image-product-1-thumbnail.jpg"
                     alt="thumbnail"
@@ -241,7 +254,12 @@ function App() {
                 </button>
               </li>
               <li className="p-3 rounded-md pt-6">
-                <button className="rounded-xl overflow-hidden" onClick={(e)=>{e.preventDefault, setImgNumber(1)}}>
+                <button
+                  className="rounded-xl overflow-hidden"
+                  onClick={(e) => {
+                    e.preventDefault, setImgNumber(1);
+                  }}
+                >
                   <img
                     src="./assets/image-product-2-thumbnail.jpg"
                     alt="thumbnail"
@@ -249,7 +267,12 @@ function App() {
                 </button>
               </li>
               <li className="p-3 rounded-md pt-6">
-                <button className="rounded-xl overflow-hidden" onClick={(e)=>{e.preventDefault, setImgNumber(2)}}>
+                <button
+                  className="rounded-xl overflow-hidden"
+                  onClick={(e) => {
+                    e.preventDefault, setImgNumber(2);
+                  }}
+                >
                   <img
                     src="./assets/image-product-3-thumbnail.jpg"
                     alt="thumbnail"
@@ -257,7 +280,12 @@ function App() {
                 </button>
               </li>
               <li className="p-3 rounded-md pt-6 pr-0">
-                <button className="rounded-xl overflow-hidden" onClick={(e)=>{e.preventDefault, setImgNumber(3)}}>
+                <button
+                  className="rounded-xl overflow-hidden"
+                  onClick={(e) => {
+                    e.preventDefault, setImgNumber(3);
+                  }}
+                >
                   <img
                     src="./assets/image-product-4-thumbnail.jpg"
                     alt="thumbnail"
