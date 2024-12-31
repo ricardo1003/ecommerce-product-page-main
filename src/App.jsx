@@ -24,10 +24,10 @@ function App() {
 
   return (
     <>
-      <header className="relative flex gap-4 w-full p-6 pl-[56px] sm:px-20 items-center justify-between">
+      <header className="relative flex gap-4 w-full pr-6 pl-[56px] sm:px-20 items-center justify-between sm:border-b-[1px] border-black/25 h-20">
         <button
           type="button"
-          className="flex items-center absolute left-6 z-[13] sm:hidden"
+          className="flex items-center absolute left-6 z-[13] md:hidden"
           onClick={() => {
             navState ? setNavState(false) : setNavState(true);
             divHidden ? setDivHidden(false) : "";
@@ -46,31 +46,31 @@ function App() {
             />
           </picture>
         </button>
-        <img src="./assets/logo.svg" alt="logo" className="mr-auto sm:mr-0" />
+        <img src="./assets/logo.svg" alt="logo" className="mr-auto md:mr-0" />
         <nav
           className={`fixed left-0 font-bold bg-white top-0 p-6 pt-24 w-[225px] z-[12] h-[100vh] ${
             navState ? "translate-x-[0]" : "-translate-x-[225px]"
-          } transition-transform duration-500 sm:relative sm:size-auto sm:p-0 sm:left-auto sm:translate-x-[0] sm:text-Dark-grayish-blue sm:font-normal sm:mr-auto`}
+          } transition-transform duration-500 md:relative md:size-auto md:p-0 md:left-auto md:translate-x-[0] md:text-Dark-grayish-blue md:font-normal md:mr-auto md:h-full`}
         >
           <ul
             className={`flex-col gap-3 ${
               navState ? "flex" : "hidden"
-            } sm:flex sm:flex-row`}
+            } md:flex md:items-center md:flex-row md:h-full md:relative`}
           >
-            <li>
-              <a href="">Collections</a>
+            <li className="md:relative md:h-full">
+              <a href="" className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 ">Collections</a>
             </li>
-            <li>
-              <a href="">Men</a>
+            <li className="md:relative md:h-full">
+              <a href="" className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 ">Men</a>
             </li>
-            <li>
-              <a href="">Women</a>
+            <li className="md:relative md:h-full">
+              <a href="" className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 ">Women</a>
             </li>
-            <li>
-              <a href="">About</a>
+            <li className="md:relative md:h-full">
+              <a href="" className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 ">About</a>
             </li>
-            <li>
-              <a href="">Contact</a>
+            <li className="md:relative md:h-full">
+              <a href="" className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 ">Contact</a>
             </li>
           </ul>
         </nav>
@@ -128,7 +128,7 @@ function App() {
             }`}
           >
             <p
-              className={`font-bold text-Dark-grayish-blue ${
+              className={`font-bold mx-[50px] text-Dark-grayish-blue ${
                 counter ? "hidden" : ""
               }`}
             >
@@ -173,7 +173,7 @@ function App() {
             </button>
           </div>
         </section>
-        <div className="flex justify-between overflow-hidden items-center w-full min-h-[375.2px] relative  sm:flex-col sm:max-w-[350px] lg:max-w-[31vw]">
+        <div className="flex justify-between items-center w-full min-h-[375.2px] relative  sm:flex-col sm:max-w-[350px] lg:max-w-[31vw]">
           <button
             type="button"
             className={`sm:hidden block bg-white size-10 z-[5] mx-4 rounded-full ${
@@ -190,7 +190,7 @@ function App() {
               className="mx-3"
             />
           </button>
-          <div className="rounded-xl relative overflow-hidden">
+          <div className="sm:rounded-xl absolute sm:relative overflow-hidden w-full h-min">
             <picture
               className={`absolute flex z-[1] sm:rounded-xl sm:relative sm:aspect-square sm:max-h-[350px] lg:h-[31vw] lg:max-h-[31vw] `}
               style={{
@@ -242,7 +242,7 @@ function App() {
             <ol className="flex">
               <li className="p-3 rounded-md pt-6 pl-0">
                 <button
-                  className="rounded-xl overflow-hidden"
+                  className={`rounded-xl overflow-hidden hover:opacity-50 ${imgNumber === 0 ? "outline outline-3 outline-Orange" : "outline-none"}`}
                   onClick={(e) => {
                     e.preventDefault, setImgNumber(0);
                   }}
@@ -255,7 +255,7 @@ function App() {
               </li>
               <li className="p-3 rounded-md pt-6">
                 <button
-                  className="rounded-xl overflow-hidden"
+                  className={`rounded-xl overflow-hidden hover:opacity-50 ${imgNumber === 1 ? "outline outline-3 outline-Orange" : "outline-none"}`}
                   onClick={(e) => {
                     e.preventDefault, setImgNumber(1);
                   }}
@@ -268,7 +268,7 @@ function App() {
               </li>
               <li className="p-3 rounded-md pt-6">
                 <button
-                  className="rounded-xl overflow-hidden"
+                  className={`rounded-xl overflow-hidden hover:opacity-50 ${imgNumber === 2 ? "outline outline-3 outline-Orange" : "outline-none"}`}
                   onClick={(e) => {
                     e.preventDefault, setImgNumber(2);
                   }}
@@ -281,7 +281,7 @@ function App() {
               </li>
               <li className="p-3 rounded-md pt-6 pr-0">
                 <button
-                  className="rounded-xl overflow-hidden"
+                  className={`rounded-xl overflow-hidden hover:opacity-50 ${imgNumber === 3 ? "outline outline-3 outline-Orange" : "outline-none"}`}
                   onClick={(e) => {
                     e.preventDefault, setImgNumber(3);
                   }}
@@ -325,7 +325,7 @@ function App() {
             <div className="flex justify-between items-center font-bold bg-Light-grayish-blue h-12 rounded-lg relative">
               <button
                 type="button"
-                className="w-full h-full flex justify-center items-center"
+                className="w-full h-full flex justify-center items-center hover:opacity-50"
                 onClick={(e) => {
                   e.preventDefault, setCounter(counter - 1);
                 }}
@@ -340,7 +340,7 @@ function App() {
               {counter}
               <button
                 type="button"
-                className="w-full h-full flex justify-center items-center"
+                className="w-full h-full flex justify-center items-center hover:opacity-50"
                 onClick={(e) => {
                   e.preventDefault, setCounter(counter + 1);
                 }}
@@ -354,7 +354,7 @@ function App() {
             </div>
             <button
               type="button"
-              className="bg-Orange h-12 rounded-lg flex items-center justify-center gap-4 font-bold sm:w-full"
+              className="bg-Orange h-12 rounded-lg flex items-center justify-center gap-4 font-bold sm:w-full hover:bg-Orange/50"
               onClick={(e) => {
                 e.preventDefault, setCounter(counter + 1);
               }}
