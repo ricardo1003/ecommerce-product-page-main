@@ -8,6 +8,7 @@ function App() {
   const [cartState, setCartState] = useState(false);
   const [cartHidden, setCartHidden] = useState(true);
   const [divHidden, setDivHidden] = useState(true);
+  const [lightbox, toggleLightbox] = useState(false);
 
   const [imgNumber, setImgNumber] = useState(0);
 
@@ -58,19 +59,44 @@ function App() {
             } md:flex md:items-center md:flex-row md:h-full md:relative`}
           >
             <li className="md:relative md:h-full">
-              <a href="" className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 ">Collections</a>
+              <a
+                href=""
+                className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 "
+              >
+                Collections
+              </a>
             </li>
             <li className="md:relative md:h-full">
-              <a href="" className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 ">Men</a>
+              <a
+                href=""
+                className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 "
+              >
+                Men
+              </a>
             </li>
             <li className="md:relative md:h-full">
-              <a href="" className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 ">Women</a>
+              <a
+                href=""
+                className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 "
+              >
+                Women
+              </a>
             </li>
             <li className="md:relative md:h-full">
-              <a href="" className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 ">About</a>
+              <a
+                href=""
+                className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 "
+              >
+                About
+              </a>
             </li>
             <li className="md:relative md:h-full">
-              <a href="" className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 ">Contact</a>
+              <a
+                href=""
+                className="md:h-full flex items-center before:md:hidden hover:md:before:block before:bg-Orange before:absolute before:bottom-0 before:w-full before:h-1 "
+              >
+                Contact
+              </a>
             </li>
           </ul>
         </nav>
@@ -174,6 +200,161 @@ function App() {
           </div>
         </section>
         <div className="flex justify-between items-center w-full min-h-[375.2px] relative  sm:flex-col sm:max-w-[350px] lg:max-w-[31vw]">
+          <section
+            className={`${
+              lightbox && viewportWidth >= 640 ? `sm:flex` : `hidden`
+            } fixed w-[100vw] h-[100vh] top-0 left-0 bg-black/25 z-[25] items-center justify-center`}
+          >
+            <div className={`flex flex-col max-w-[600px]`}>
+              <button className="self-end" onClick={(e)=>{e.preventDefault, toggleLightbox(false)}}>
+                <img src="./assets/icon-close.svg" alt="closeLightbox" />
+              </button>
+              <div className="flex flex-row items-center relative">
+                <button
+                  type="button"
+                  className={`hidden sm:block bg-white size-10 z-[5] mx-4 rounded-full absolute ${
+                    imgNumber <= 0 ? "bg-white/25" : ""
+                  }`}
+                  onClick={() => {
+                    setImgNumber(imgNumber - 1);
+                  }}
+                  disabled={imgNumber <= 0 ? true : false}
+                >
+                  <img
+                    src="./assets/icon-previous.svg"
+                    alt="previous"
+                    className="mx-3"
+                  />
+                </button>
+                <div className="overflow-hidden h-min aspect-square max-w-[600px] w-[71.42857142857143vw] rounded-xl">
+                  <picture
+                    className="flex"
+                    style={{
+                      translate: `${(viewportWidth >= 870) ? -600 * imgNumber + "px" : (-500/7 * imgNumber) + "vw" }`,
+                      transitionDuration: "250ms",
+                    }}
+                  >
+                    <img
+                      src="./assets/image-product-1.jpg"
+                      alt="product-1"
+                      className="sm:max-h-full"
+                    />
+                    <img
+                      src="./assets/image-product-2.jpg"
+                      alt="product-2"
+                      className="sm:max-h-full"
+                    />
+                    <img
+                      src="./assets/image-product-3.jpg"
+                      alt="product-3"
+                      className="sm:max-h-full"
+                    />
+                    <img
+                      src="./assets/image-product-4.jpg"
+                      alt="product-4"
+                      className="sm:max-h-full"
+                    />
+                  </picture>
+                </div>
+                <button
+                  type="button"
+                  className={`hidden sm:block bg-white size-10 z-[5] mx-4 rounded-full absolute right-0 ${
+                    imgNumber >= 3 ? "bg-white/25" : ""
+                  }`}
+                  onClick={() => {
+                    setImgNumber(imgNumber + 1);
+                  }}
+                  disabled={imgNumber >= 3 ? true : false}
+                >
+                  <img
+                    src="./assets/icon-next.svg"
+                    alt="next"
+                    className="mx-4"
+                  />
+                </button>
+              </div>
+              <nav className="hidden sm:block">
+                <ol className="flex">
+                  <li className="p-3 rounded-md pt-6 pl-0">
+                    <div className="flex bg-white rounded-xl h-min">
+                      <button
+                        className={`rounded-xl overflow-hidden hover:opacity-50 backdrop-brightness-0 backdrop-invert ${
+                          imgNumber === 0
+                            ? "outline outline-3 outline-Orange"
+                            : "outline-none"
+                        }`}
+                        onClick={(e) => {
+                          e.preventDefault, setImgNumber(0);
+                        }}
+                      >
+                        <img
+                          src="./assets/image-product-1-thumbnail.jpg"
+                          alt="thumbnail"
+                        />
+                      </button>
+                    </div>
+                  </li>
+                  <li className="p-3 rounded-md pt-6">
+                    <div className="flex bg-white rounded-xl h-min">
+                      <button
+                        className={`rounded-xl overflow-hidden hover:opacity-50 backdrop-brightness-0 backdrop-invert ${
+                          imgNumber === 1
+                            ? "outline outline-3 outline-Orange"
+                            : "outline-none"
+                        }`}
+                        onClick={(e) => {
+                          e.preventDefault, setImgNumber(1);
+                        }}
+                      >
+                        <img
+                          src="./assets/image-product-2-thumbnail.jpg"
+                          alt="thumbnail"
+                        />
+                      </button>
+                    </div>
+                  </li>
+                  <li className="p-3 rounded-md pt-6">
+                    <div className="flex bg-white rounded-xl h-min">
+                      <button
+                        className={`rounded-xl overflow-hidden hover:opacity-50 backdrop-brightness-0 backdrop-invert ${
+                          imgNumber === 2
+                            ? "outline outline-3 outline-Orange"
+                            : "outline-none"
+                        }`}
+                        onClick={(e) => {
+                          e.preventDefault, setImgNumber(2);
+                        }}
+                      >
+                        <img
+                          src="./assets/image-product-3-thumbnail.jpg"
+                          alt="thumbnail"
+                        />
+                      </button>
+                    </div>
+                  </li>
+                  <li className="p-3 rounded-md pt-6 pr-0">
+                    <div className="flex bg-white rounded-xl h-min">
+                      <button
+                        className={`rounded-xl overflow-hidden hover:opacity-50 backdrop-brightness-0 backdrop-invert ${
+                          imgNumber === 3
+                            ? "outline outline-3 outline-Orange"
+                            : "outline-none"
+                        }`}
+                        onClick={(e) => {
+                          e.preventDefault, setImgNumber(3);
+                        }}
+                      >
+                        <img
+                          src="./assets/image-product-4-thumbnail.jpg"
+                          alt="thumbnail"
+                        />
+                      </button>
+                    </div>
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </section>
           <button
             type="button"
             className={`sm:hidden block bg-white size-10 z-[5] mx-4 rounded-full ${
@@ -190,7 +371,10 @@ function App() {
               className="mx-3"
             />
           </button>
-          <div className="sm:rounded-xl absolute sm:relative overflow-hidden w-full h-min">
+          <div
+            className="sm:rounded-xl absolute sm:relative overflow-hidden w-full h-min cursor-pointer"
+            onClick={() => toggleLightbox(true)}
+          >
             <picture
               className={`absolute flex z-[1] sm:rounded-xl sm:relative sm:aspect-square sm:max-h-[350px] lg:h-[31vw] lg:max-h-[31vw] `}
               style={{
@@ -242,7 +426,11 @@ function App() {
             <ol className="flex">
               <li className="p-3 rounded-md pt-6 pl-0">
                 <button
-                  className={`rounded-xl overflow-hidden hover:opacity-50 ${imgNumber === 0 ? "outline outline-3 outline-Orange" : "outline-none"}`}
+                  className={`rounded-xl overflow-hidden hover:opacity-50 ${
+                    imgNumber === 0
+                      ? "outline outline-3 outline-Orange"
+                      : "outline-none"
+                  }`}
                   onClick={(e) => {
                     e.preventDefault, setImgNumber(0);
                   }}
@@ -255,7 +443,11 @@ function App() {
               </li>
               <li className="p-3 rounded-md pt-6">
                 <button
-                  className={`rounded-xl overflow-hidden hover:opacity-50 ${imgNumber === 1 ? "outline outline-3 outline-Orange" : "outline-none"}`}
+                  className={`rounded-xl overflow-hidden hover:opacity-50 ${
+                    imgNumber === 1
+                      ? "outline outline-3 outline-Orange"
+                      : "outline-none"
+                  }`}
                   onClick={(e) => {
                     e.preventDefault, setImgNumber(1);
                   }}
@@ -268,7 +460,11 @@ function App() {
               </li>
               <li className="p-3 rounded-md pt-6">
                 <button
-                  className={`rounded-xl overflow-hidden hover:opacity-50 ${imgNumber === 2 ? "outline outline-3 outline-Orange" : "outline-none"}`}
+                  className={`rounded-xl overflow-hidden hover:opacity-50 ${
+                    imgNumber === 2
+                      ? "outline outline-3 outline-Orange"
+                      : "outline-none"
+                  }`}
                   onClick={(e) => {
                     e.preventDefault, setImgNumber(2);
                   }}
@@ -281,7 +477,11 @@ function App() {
               </li>
               <li className="p-3 rounded-md pt-6 pr-0">
                 <button
-                  className={`rounded-xl overflow-hidden hover:opacity-50 ${imgNumber === 3 ? "outline outline-3 outline-Orange" : "outline-none"}`}
+                  className={`rounded-xl overflow-hidden hover:opacity-50 ${
+                    imgNumber === 3
+                      ? "outline outline-3 outline-Orange"
+                      : "outline-none"
+                  }`}
                   onClick={(e) => {
                     e.preventDefault, setImgNumber(3);
                   }}
